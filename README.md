@@ -10,6 +10,27 @@ A Model Context Protocol (MCP) server that provides seamless integration with Go
 - **Easy Document Operations** - Create, read, update, and batch edit documents
 - **Error Handling** - Comprehensive error responses with detailed information
 - **Helper Functions** - Convenient tools for common document operations
+- **Modular Architecture** - Clean, maintainable code structure
+
+## 🏗️ Project Structure
+
+```
+google-docs-mcp/
+├── main.py                 # Single-file version (backward compatibility)
+├── server.py               # Clean modular entry point
+├── src/                    # Source code modules
+│   ├── __init__.py        # Package initialization
+│   ├── models.py          # Pydantic models for structured output
+│   ├── auth.py            # Nango authentication utilities
+│   ├── api_client.py      # Google Docs API client
+│   └── tools.py           # MCP tool definitions
+├── tests/                  # Test files
+├── examples/              # Usage examples
+├── docs/                  # Additional documentation
+├── requirements.txt       # Python dependencies
+├── .env.example          # Environment variables template
+└── README.md             # This file
+```
 
 ## 🚀 Quick Start
 
@@ -21,26 +42,30 @@ A Model Context Protocol (MCP) server that provides seamless integration with Go
 
 ### Installation
 
-1. **Clone or download the server file**
+1. **Clone the project**
    ```bash
-   # Save the main.py file to your project directory
+   cd /path/to/work-projects
+   git clone <repository-url> google-docs-mcp
+   cd google-docs-mcp
    ```
 
 2. **Install dependencies**
    ```bash
-   pip install fastmcp pydantic requests
+   pip install -r requirements.txt
    ```
 
-3. **Set up Nango environment variables**
+3. **Set up environment variables**
    ```bash
-   export NANGO_CONNECTION_ID="your_connection_id"
-   export NANGO_INTEGRATION_ID="google-docs"
-   export NANGO_BASE_URL="https://api.nango.dev"
-   export NANGO_SECRET_KEY="your_nango_secret_key"
+   cp .env.example .env
+   # Edit .env with your Nango credentials
    ```
 
 4. **Run the server**
    ```bash
+   # Using the modular version (recommended)
+   python server.py
+   
+   # Or using the single-file version
    python main.py
    ```
 
@@ -242,6 +267,34 @@ if hasattr(result, 'error'):
 else:
     print(f"Success! Document title: {result.title}")
 ```
+
+## 🧪 Development
+
+### Running Tests
+
+```bash
+# Run all tests
+python -m pytest tests/
+
+# Run with coverage
+python -m pytest tests/ --cov=src --cov-report=html
+```
+
+### Code Structure
+
+- **`src/models.py`** - Pydantic models for structured output
+- **`src/auth.py`** - Nango authentication handling
+- **`src/api_client.py`** - Google Docs API client utilities
+- **`src/tools.py`** - MCP tool definitions
+- **`server.py`** - Clean entry point using modular structure
+- **`main.py`** - Single-file version for simple deployment
+
+### Adding New Tools
+
+1. Define the response model in `src/models.py`
+2. Add API client function in `src/api_client.py`
+3. Create the tool function in `src/tools.py`
+4. Register the tool in the `register_tools()` function
 
 ## 🔐 Security & Permissions
 
