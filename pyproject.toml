@@ -10,3 +10,12 @@ dependencies = [
     "python-dotenv>=1.1.1",
     "requests>=2.32.4",
 ]
+[project.scripts]
+google-docs-mcp = "main:run"
+
+[tool.uv]
+package = true
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
