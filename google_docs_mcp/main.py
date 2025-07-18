@@ -2,7 +2,7 @@
 """Google Docs MCP Server - Clean modular entry point."""
 
 from mcp.server.fastmcp import FastMCP
-from src.tools import register_tools
+from .tools import register_tools
 
 # Initialize FastMCP server
 mcp = FastMCP("Google Docs API")

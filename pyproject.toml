@@ -1,7 +1,7 @@
 [project]
 name = "google-docs-mcp"
 version = "0.1.0"
-description = "Add your description here"
+description = "A Model Context Protocol server for Google Docs API with structured output and Nango authentication"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -10,11 +10,15 @@ dependencies = [
     "python-dotenv>=1.1.1",
     "requests>=2.32.4",
 ]
+
 [project.scripts]
-google-docs-mcp = "main:run"
+google-docs-mcp = "google_docs_mcp.main:run"
 
 [tool.uv]
 package = true
+
+[tool.setuptools.packages.find]
+where = ["."]
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
